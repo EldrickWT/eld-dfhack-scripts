@@ -46,7 +46,7 @@ local month = math.floor(julian_day / 28) + 1 --days and months are 1-indexed
 local day = julian_day % 28
 local date_str = string.format('%05d-%02d-%02d', df.global.cur_year, month, day)
 
-dfhack.run_command("exportlegends all") -- changed this to just export xml for now --changed it back -Eld
+dfhack.run_command("exportlegends info maps") -- changed this to just export xml for now --changed it myself -Eld
 print(tostring(df.global.world.cur_savegame.save_dir).."-"..date_str.."-legends_plus.xml") --Debug-ish but I like to know this stuff incase something goes horribly wrong. -Eld
 print("    Exporting:  extra legends mode details...") --added spaces at start of string
 io.output(tostring(df.global.world.cur_savegame.save_dir).."-"..date_str.."-legends_plus.xml")
@@ -163,7 +163,9 @@ io.write ("<entities>".."\n")
 for entityK, entityV in ipairs(df.global.world.entities.all) do
 	io.write ("\t".."<entity>".."\n")
 	io.write ("\t\t".."<id>"..entityV.id.."</id>".."\n")
-	io.write ("\t\t".."<race>"..(df.global.world.raws.creatures.all[entityV.race].creature_id):lower().."</race>".."\n")
+	if (entityV.race) ~= -1 then
+		io.write ("\t\t".."<race>"..(df.global.world.raws.creatures.all[entityV.race].creature_id):lower().."</race>".."\n")
+	end
 	io.write ("\t\t".."<type>"..(df.historical_entity_type[entityV.type]):lower().."</type>".."\n")
 	if (df.historical_entity_type[entityV.type]):lower() == "religion" then -- Get worshipped figure		
 		if (entityV.unknown1b ~= nil and entityV.unknown1b.worship ~= nill and 

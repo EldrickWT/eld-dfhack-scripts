@@ -1,44 +1,21 @@
 --BRAINWASH the fortress. For when that one lost sheep haunts their thoughts FOREVER.
-function brainwash()
-local total_fixed = 0
-local total_removed = 0
+function brainwashfortress()
 
---From siren.lua
-function add_thought(fnUnit, code)
-    for _,v in ipairs(fnUnit.status.recent_events) do
-        if v.type == code then
-            v.age = 0
-            return
-        end
+    --readapted From siren.lua on April 7 2015
+    function add_thought(unit, emotion, thought)
+        unit.status.current_soul.personality.emotions:resize(0)
+        unit.status.current_soul.personality.emotions:insert('#', { new = true, type = emotion, unk2=1, strength=1, thought=thought, subthought=0, severity=0, flags=0, unk7=0, year=df.global.cur_year, year_tick=df.global.cur_year_tick})
+        unit.status.happiness = 4000
     end
-    fnUnit.status.recent_events:insert('#', { new = true, type = code, severity = 150 }) --added a severity level.
-end
 
-
-for fnUnitCount,fnUnit in ipairs(df.global.world.units.all) do
-    if fnUnit.race == df.global.ui.race_id then
-        local listEvents = fnUnit.status.recent_events
-        local found = 1
-        local fixed = 0
-        while found == 1 do
-            local events = fnUnit.status.recent_events
-            found = 0
-            for k,v in pairs(events) do
-                events:erase(k)
-                found = 1
-                total_removed = total_removed + 1
-                fixed = 1
-                break
+    --readapted From siren.lua and conscript.lua on April 7 2015
+    for unitCount,unit in ipairs(df.global.world.units.active) do
+        if not (unit.flags1.dead == true) then
+            if unit.civ_id == df.global.ui.civ_id then
+                add_thought(unit, df.emotion_type.Relief, df.unit_thought_type.Rescued)
+                print(dfhack.TranslateName(dfhack.units.getVisibleName(unit)))
             end
         end
-        add_thought(fnUnit, df.unit_thought_type.Rescued)
-        fnUnit.status.happiness = 4000
-        if fixed == 1 then
-            total_fixed = total_fixed + 1
-            print(total_fixed, total_removed, dfhack.TranslateName(dfhack.units.getVisibleName(fnUnit)))
-        end
     end
 end
-print("Total Fixed: "..total_fixed)
-end
-brainwash()
+brainwashfortress()
