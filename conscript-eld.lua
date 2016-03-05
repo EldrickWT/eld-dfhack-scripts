@@ -157,6 +157,10 @@ for _,v in ipairs(df.global.world.units.active) do
                      if (debug == true) then print("Impairment detected: " ..df.creature_raw.find(v.race).creature_id.. " " ..namey2) end
                      v.flags1.tame = true
                      v.training_level = 7
+--                 elseif (v == df.global.ui.group_id) then
+--                     if (debug == true) then print("Group match for a " ..df.creature_raw.find(v.race).creature_id.. " " ..namey2) end
+--                     v.flags1.tame = false
+--                     v.training_level = 9
                  --Need to spell out the higher order/entity races in case of "tweak makeown" and "mercenaries". Animalmen'll still be boned but they kinda should be. At current anyway.
                  --In either event, we're talking about CIV members already anyway. Aaand we already covered "pets" so now Mercenaries.
                  --Could potentially be cleaned up to pull from the master entity list or the entity raws ... but this should be quick at least.
@@ -180,8 +184,12 @@ for _,v in ipairs(df.global.world.units.active) do
                    or (df.creature_raw.find(v.race).creature_id == "VILEHORN") --VILEHORN_CIV
                    or (df.creature_raw.find(v.race).creature_id == "GARDOHN") --GARDOHN
                    or (df.creature_raw.find(v.race).creature_id == "WRAITH") --WRAITH
-                   or (df.creature_raw.find(v.race).creature_id == "YIFFIAN") then --YIFFIAN_CIV
-                     if (debug == true) then print("Mercenary " ..df.creature_raw.find(v.race).creature_id.. " " ..namey2) end
+                   or (df.creature_raw.find(v.race).creature_id == "YIFFIAN") --YIFFIAN_CIV
+                   or (df.creature_raw.find(v.race).creature_id == "EARTH_GOLEM") --Default SLOW_LEARNER, But they can learn and do work in 42.06 so...
+                   or (df.creature_raw.find(v.race).creature_id == "PUDDING_GOLEM") --Ditto
+                   or (df.creature_raw.find(v.race).creature_id == "FERALHORN") --Tarzan like Jane. Tarzan smarter than dumb Kapa.
+                   or (df.creature_raw.find(v.race).creature_id == "GREMLIN") then --Can Learn can spesk, will work with 42.06 so...
+                     if (debug == true) then print("?Mercenary? Tinker Tailor Soldier Sailor? Soldier?? Bard?? " ..df.creature_raw.find(v.race).creature_id.. " " ..namey2) end
                      v.flags1.tame = false
                      v.training_level = 9
                  --Spot open for Semi-megabeasts here...
