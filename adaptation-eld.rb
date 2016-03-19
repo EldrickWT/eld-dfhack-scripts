@@ -17,6 +17,13 @@ COLOR_RED    = 4
 COLOR_YELLOW = 14
 COLOR_WHITE  = 15
 
+def unit_citizens2
+    df.world.units.active.find_all { |u|
+        df.unit_isfortmember(u)
+    }
+end
+
+
 def usage(s)
     if nil != s
         puts(s)
@@ -76,7 +83,7 @@ set_adaptation_value = lambda { |u,v|
                         df.print_color(COLOR_RED, "Unit #{u.id} (#{u.name}) has an adaptation of #{t.value}\n")
                     end
                 else
-                    df.print_color(COLOR_WHITE, "Unit #{u.id} (#{u.name}) has an adaptation of #{t.value}")
+                    puts(COLOR_WHITE, "Unit #{u.id} (#{u.name}) has an adaptation of #{t.value}")
                 end
             elsif mode == 'set'
                 df.print_color(COLOR_WHITE, "Unit #{u.id} (#{u.name}) changed from #{t.value} to #{v}")
@@ -95,7 +102,7 @@ when 'him'
         puts 'Please select a dwarf ingame'
     end
 when 'all'
-    df.unit_citizens.each { |uu|
+    unit_citizens2.each { |uu|
         set_adaptation_value[uu,value]
     }
 end
