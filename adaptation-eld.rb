@@ -57,7 +57,7 @@ end
 num_set = 0
 
 set_adaptation_value = lambda { |u,v|
-    next if !df.unit_iscitizen(u)
+    next if !df.unit_isfortmember(u)
     next if u.flags1.dead
     u.status.misc_traits.each { |t|
         if t.id == :CaveAdapt
