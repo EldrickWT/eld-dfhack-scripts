@@ -13,18 +13,18 @@ function impregnate ()
 
   genes = victim.appearance.genes:new()
 
-  if (victim.relations.pregnancy_timer > 0) then
+  if (victim.pregnancy_timer > 0) then
     print('Already pregnant!')
     return
   end
 
-  victim.relations.pregnancy_genes = genes;
-  victim.relations.pregnancy_timer = 30;
+  victim.pregnancy_genes = genes;
+  victim.pregnancy_timer = 30;
 
-  if (victim.relations.lover_id == 0) then
-    victim.relations.pregnancy_caste = 0;
+  if (victim.pregnancy_spouse == 0) then
+    victim.pregnancy_caste = 0;
   else
-    victim.relations.pregnancy_caste = 1;
+    victim.pregnancy_caste = 1;
   end
 
 end

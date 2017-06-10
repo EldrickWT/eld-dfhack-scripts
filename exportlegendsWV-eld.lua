@@ -47,7 +47,7 @@ local day = julian_day % 28
 local date_str = string.format('%05d-%02d-%02d', df.global.cur_year, month, day)
 
 dfhack.run_command("exportlegends info maps") -- changed this to just export xml for now --Changed it myself -Eld
-print(tostring(df.global.world.cur_savegame.save_dir).."-"..date_str.."-legends_plus.xml") --Debug-ish but I like to know this stuff incase something goes horribly wrong. -Eld
+print(tostring(df.global.world.cur_savegame.save_dir).."-"..date_str.."-legends_plus.xml") --Debug-ish but I like to know this stuff in case something goes horribly wrong. -Eld
 print("    Exporting:  extra legends mode details...") --added spaces at start of string
 io.output(tostring(df.global.world.cur_savegame.save_dir).."-"..date_str.."-legends_plus.xml")
 

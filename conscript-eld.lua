@@ -116,11 +116,18 @@ for _,v in ipairs(df.global.world.units.active) do
                      v.profession2 = 102
                      did_something=true
                 end
-                v.relations.following = nil
+                if not (v.following == nil) then
+                     if (v.name.has_name == false) then
+                         namey = 'This one'
+                     else
+                         namey = dfhack.TranslateName(v.name,true)
+                     end
+                     print(namey.. " is following " ..dfhack.TranslateName(v.following.name,true)..". Is that okay?")
+                end
                 v.flags1.ridden=false
                 v.flags1.rider=false
-                v.relations.rider_mount_id=-1
-                if v.name.has_name == false then
+                v.relationship_ids.RiderMount=-1
+                if (v.name.has_name == false) then
                     namey = 'This one'
                 else
                     namey = dfhack.TranslateName(v.name,true)
@@ -189,7 +196,7 @@ for _,v in ipairs(df.global.world.units.active) do
                    or (df.creature_raw.find(v.race).creature_id == "PUDDING_GOLEM") --Ditto
                    or (df.creature_raw.find(v.race).creature_id == "FERALHORN") --Tarzan like Jane. Tarzan smarter than dumb Kapa.
                    or (df.creature_raw.find(v.race).creature_id == "GREMLIN") then --Can Learn can spesk, will work with 42.06 so...
-                     if (debug == true) then print("?Mercenary? Tinker Tailor Soldier Sailor? Soldier?? Bard?? " ..df.creature_raw.find(v.race).creature_id.. " " ..namey2) end
+                     if (debug == true) then print("?Mercenary? Tinker Tailor Soldier Sailor? Scholar?? Bard?? " ..df.creature_raw.find(v.race).creature_id.. " " ..namey2) end
                      v.flags1.tame = false
                      v.training_level = 9
                  --Spot open for Semi-megabeasts here...

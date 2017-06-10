@@ -1,6 +1,6 @@
 # View or set level of cavern adaptation for the selected unit or the whole fort
 # based on removebadthoughts.rb
-# Edited to clean up output -Eld
+# Edited to clean up output, tag it as editted (-eld), and try to make it work on the local group... -Eld
 =begin
 
 adaptation-eld
@@ -83,10 +83,14 @@ set_adaptation_value = lambda { |u,v|
                         df.print_color(COLOR_RED, "Unit #{u.id} (#{u.name}) has an adaptation of #{t.value}\n")
                     end
                 else
-                    puts(COLOR_WHITE, "Unit #{u.id} (#{u.name}) has an adaptation of #{t.value}")
+                    puts "Unit #{u.id} (#{u.name}) has an adaptation of #{t.value}"
                 end
             elsif mode == 'set'
-                df.print_color(COLOR_WHITE, "Unit #{u.id} (#{u.name}) changed from #{t.value} to #{v}")
+                if df.respond_to?(:print_color)
+                    df.print_color(COLOR_WHITE, "Unit #{u.id} (#{u.name}) changed from #{t.value} to #{v}")
+                else
+                    puts "Unit #{u.id} (#{u.name}) changed from #{t.value} to #{v}"
+                end
                 t.value = v
                 num_set += 1
             end
@@ -104,6 +108,7 @@ when 'him'
 when 'all'
     unit_citizens2.each { |uu|
         set_adaptation_value[uu,value]
+        #puts "Unit #{uu.id} #{uu.name}"
     }
 end
 
