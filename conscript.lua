@@ -146,11 +146,11 @@ for _,v in ipairs(df.global.world.units.active) do
           or (df.creature_raw.find(v.race).creature_id=="WRAITH") then
             if (debug==true) then print("Untaming a " ..df.creature_raw.find(v.race).creature_id.. " refered to as " ..namey) end
             v.flags1.tame=false
-            v.training_level=7
+            v.training_level=9
         elseif (v.race==df.global.ui.race_id) then --Emancipating Slaves/Indentured Sevants.
           if (debug==true) then print("Race match for a " ..df.creature_raw.find(v.race).creature_id.. " refered to as " ..namey) end
           v.flags1.tame=false
-          v.training_level=7
+          v.training_level=9
         elseif (df.creature_raw.find(v.race).flags.CASTE_CAN_SPEAK==false) or (df.creature_raw.find(v.race).flags.CASTE_CAN_LEARN==false) then
           if (debug==true) then print("Impairment detected: " ..df.creature_raw.find(v.race).creature_id.. " refered to as " ..namey) end --Mooing is not speech usually.
           v.flags1.tame=true
@@ -158,7 +158,7 @@ for _,v in ipairs(df.global.world.units.active) do
 --        elseif (v.#GROUPIDISMISSING==df.global.ui.group_id) then
 --          if (debug==true) then print("Group match for a " ..df.creature_raw.find(v.race).creature_id.. " refered to as " ..namey) end
 --          v.flags1.tame=false
---          v.training_level=7
+--          v.training_level=9
         --Need to spell out the higher order/entity races in case of 'tweak makeown' and 'mercenaries'. Animalmen'll still be boned but they kinda should be. At current anyway.
         --In either event, we're talking about CIV members already anyway. Aaand we already covered 'pets' so now Mercenaries.
         --Could potentially be cleaned up to pull from the master entity list or the entity raws ... but this should be quick at least.
@@ -189,7 +189,7 @@ for _,v in ipairs(df.global.world.units.active) do
           or (df.creature_raw.find(v.race).creature_id=="GREMLIN") then --Can Learn, can speak, and will do work with 42.06 so...
             if (debug==true) then print("?Mercenary? Tinker Tailor Soldier Sailor? Scholar?? Bard?? " ..df.creature_raw.find(v.race).creature_id.. " refered to as " ..namey) end
             v.flags1.tame=false
-            v.training_level=7
+            v.training_level=9
         --Spot open for Semi-megabeasts here...
         --Spot open for Megabeasts here...
         --Spot open for Powers here...
@@ -200,7 +200,7 @@ for _,v in ipairs(df.global.world.units.active) do
         else --WTF?
             if (debug==true) then print("No criteria for a " ..df.creature_raw.find(v.race).creature_id.. " refered to as " ..named.. ", so taming them.") end
             v.flags1.tame=false
-            v.training_level=7
+            v.training_level=9
         end
         --Lazy SELECT CASTE ALL knockoff applied to LUA
         v.flags1.on_ground=false
