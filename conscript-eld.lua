@@ -32,14 +32,14 @@ for _,arg in ipairs({...}) do
     if string.lower(arg)=="-h" then help=true end
     if string.lower(arg)=="-?" then help=true end
     if string.lower(arg)=="--help" then help=true end
-    if string.lower(arg)=="-h" then help=true end
+    if string.lower(arg)=="--h" then help=true end
     if string.lower(arg)=="--?" then help=true end
 end
 --Lazy Help Section
 if help==true then
   print([[
 Conscript.lua is by EldrickWT - Github profile http://github.com/EldrickWT
-Bugs can be reported at - http://Github.com/EldrickWT/dfhack
+Bugs can be reported at - https://github.com/EldrickWT/eld-dfhack-scripts
 
     Conscript is for converting Civilization Babies, and Children into Functional Adults
 first and foremost. It has no configuration in this regard.
@@ -155,6 +155,7 @@ for _,v in ipairs(df.global.world.units.active) do
           if (debug==true) then print("Impairment detected: " ..df.creature_raw.find(v.race).creature_id.. " refered to as " ..namey) end --Mooing is not speech usually.
           v.flags1.tame=true
           v.training_level=7
+        --Imagining a huge setup to do the following what with checking hist_figs and whatnot... likely permanent TODO.
 --        elseif (v.#GROUPIDISMISSING==df.global.ui.group_id) then
 --          if (debug==true) then print("Group match for a " ..df.creature_raw.find(v.race).creature_id.. " refered to as " ..namey) end
 --          v.flags1.tame=false
